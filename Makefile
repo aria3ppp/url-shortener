@@ -41,6 +41,18 @@ server-up: ## create and start server
 server-down: ## stop and remove server
 	$(DOCKER_COMPOSE_SERVER) down
 
+.PHONY: server-testdeploy-ps
+server-testdeploy-ps: ## list server containers from test deploy
+	docker compose -f docker-compose.testdeploy.yml ps
+
+.PHONY: server-testdeploy-up
+server-testdeploy-up: ## start server from test deploy
+	docker compose -f docker-compose.testdeploy.yml up -d
+
+.PHONY: server-testdeploy-down
+server-testdeploy-down: ## stop server from test deploy
+	docker compose -f docker-compose.testdeploy.yml down
+
 .PHONY: test
 test: ## run tests
 	go test -p 1 -covermode=count -coverprofile=coverage.out ./...
