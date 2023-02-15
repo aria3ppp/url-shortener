@@ -8,7 +8,7 @@
 ### To run the server:
 
 ```bash
-make server-testdeploy-up
+cp .env.example .env && make server-testdeploy-up
 ```
 
 Now server is up and running at port `8080` on your `localhost`.
