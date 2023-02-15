@@ -1,0 +1,10 @@
+/.git/
+/.gitignore
+
+/.vscode/
+
+/coverage.out
+
+/.env
+
+/server

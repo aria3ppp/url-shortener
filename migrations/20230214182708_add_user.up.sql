@@ -1,0 +1,8 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS users (
+    username VARCHAR(40) PRIMARY KEY,
+    password VARCHAR(40) NOT NULL
+);
+
+COMMIT;
