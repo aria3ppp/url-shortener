@@ -40,7 +40,6 @@ func main() {
 
 	router := echo.New()
 	helper.HandleRoutes(router, handler)
-	router.POST("/user", handler.HandleCreateUser)
 
 	if err := router.Start(":" + os.Getenv("SERVER_PORT")); err != nil {
 		panic(err)
