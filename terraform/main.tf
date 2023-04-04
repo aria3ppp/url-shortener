@@ -189,7 +189,6 @@ resource "kubernetes_deployment" "url_shortener_deployment" {
                 env {
                     name = "POSTGRES_HOST"
                     value = "${helm_release.postgres_deployment.name}-${helm_release.postgres_deployment.chart}-pgpool"
-                    # value = [for km in [for c in split("---", helm_release.postgres_deployment.manifest) : yamldecode(c) if length(trimspace(c))>0] : km.metadata.name if contains(values(km.metadata.labels), local.pgpool_service_label_value)][0]
                 }
                 env {
                   name = "POSTGRES_PORT"
