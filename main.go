@@ -11,16 +11,16 @@ import (
 	"github.com/aria3ppp/url-shortener/internal/handler"
 	"github.com/aria3ppp/url-shortener/internal/repository"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
 )
 
 func main() {
 	dsn := fmt.Sprintf(
-		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		"postgres://%s:%s@%s:5432/%s?sslmode=disable",
 		os.Getenv("POSTGRES_USER"),
 		os.Getenv("POSTGRES_PASSWORD"),
 		os.Getenv("POSTGRES_HOST"),
-		os.Getenv("POSTGRES_PORT"),
 		os.Getenv("POSTGRES_DB"),
 	)
 	db, err := sql.Open("postgres", dsn)
@@ -40,6 +40,8 @@ func main() {
 
 	router := echo.New()
 	helper.HandleRoutes(router, handler)
+
+	router.Use(middleware.Logger())
 
 	if err := router.Start(":" + os.Getenv("SERVER_PORT")); err != nil {
 		panic(err)

@@ -5,3 +5,7 @@
 /.env
 
 /server
+
+**/.terraform/
+**/terraform.tfstate*
+# **/secrets.auto.tfvars
